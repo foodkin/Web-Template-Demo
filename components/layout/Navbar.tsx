@@ -6,6 +6,11 @@ import { usePathname } from 'next/navigation';
 export default function Navbar() {
   const pathname = usePathname();
 
+  // Don't show Navbar on admin pages
+  if (pathname.startsWith('/admin')) {
+    return null;
+  }
+
   const isActive = (path: string) => {
     return pathname === path ? 'text-black border-b-2 border-black' : 'text-gray-600 hover:text-black';
   };
