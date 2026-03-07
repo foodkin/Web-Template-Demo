@@ -1,58 +1,100 @@
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] bg-black overflow-hidden flex items-center">
-      {/* Grid texture background */}
+    <section
+      className="relative min-h-[90vh] overflow-hidden flex items-center"
+      style={{ background: "#FFFFFF" }}
+    >
+      {/* Subtle dot grid */}
       <div
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0"
         style={{
-          backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
+          backgroundImage: `radial-gradient(circle, #2E106520 1.2px, transparent 1.2px)`,
+          backgroundSize: "32px 32px",
+          opacity: 0.35,
         }}
       />
 
-      {/* Large decorative number */}
+      {/* Top-left purple accent block */}
       <div
-        className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none"
+        className="absolute top-0 left-0 w-72 h-72 rounded-br-[80px]"
+        style={{ background: "#2E1065", opacity: 0.07 }}
+      />
+
+      {/* Large decorative text — outline purple */}
+      <div
+        className="absolute right-[-2%] top-1/2 -translate-y-1/2 select-none pointer-events-none"
         style={{
-          fontSize: "clamp(200px, 28vw, 420px)",
+          fontSize: "clamp(180px, 26vw, 400px)",
           fontWeight: 900,
           color: "transparent",
-          WebkitTextStroke: "1.5px rgba(255,255,255,0.06)",
+          WebkitTextStroke: "2px #2E106512",
           lineHeight: 1,
           letterSpacing: "-0.05em",
-          userSelect: "none",
+          fontFamily: "'Georgia', serif",
         }}
       >
         WE
       </div>
 
+      {/* Yellow decorative bar top */}
+      <div
+        className="absolute top-0 left-0 right-0 h-1"
+        style={{ background: "linear-gradient(90deg, #FACC15, #2E1065)" }}
+      />
+
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 py-24 grid md:grid-cols-2 gap-16 items-center">
         {/* LEFT */}
         <div>
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 border border-white/20 rounded-full px-4 py-1.5 mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span className="text-white/60 text-xs font-medium tracking-widest uppercase">
-              Happy New Year · Kode Promo WEBSITEJUARA
-            </span>
+          {/* Label badge */}
+          <div
+            className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest"
+            style={{
+              background: "#FACC15",
+              color: "#2E1065",
+              letterSpacing: "0.12em",
+            }}
+          >
+            <span
+              className="w-1.5 h-1.5 rounded-full inline-block"
+              style={{ background: "#2E1065" }}
+            />
+            Platform Web Template Indonesia
           </div>
 
           {/* Headline */}
           <h1
-            className="text-white leading-[1.05] mb-6"
+            className="leading-[1.05] mb-6"
             style={{
               fontSize: "clamp(38px, 5vw, 72px)",
               fontWeight: 900,
               letterSpacing: "-0.03em",
+              color: "#2E1065",
+              fontFamily: "'Georgia', serif",
             }}
           >
             Temukan
             <br />
             <span
               className="relative inline-block"
-              style={{ WebkitTextStroke: "1.5px #fff", color: "transparent" }}
+              style={{
+                color: "transparent",
+                WebkitTextStroke: "2px #2E1065",
+              }}
             >
               template
+              {/* Yellow underline */}
+              <span
+                className="absolute bottom-1 left-0 w-full"
+                style={{
+                  height: "6px",
+                  background: "#FACC15",
+                  borderRadius: "3px",
+                  zIndex: -1,
+                  bottom: "4px",
+                  display: "block",
+                  opacity: 0.85,
+                }}
+              />
             </span>
             <br />
             menarik
@@ -61,7 +103,10 @@ export default function Hero() {
           </h1>
 
           {/* Subtext */}
-          <p className="text-white/50 text-base md:text-lg leading-relaxed mb-10 max-w-md">
+          <p
+            className="text-base md:text-lg leading-relaxed mb-10 max-w-md"
+            style={{ color: "#2E106580" }}
+          >
             Lebih dari 12.000 UMKM telah mempercayai kami. Desain profesional,
             harga terjangkau, siap online dalam 24 jam.
           </p>
@@ -69,7 +114,12 @@ export default function Hero() {
           {/* CTAs */}
           <div className="flex flex-wrap gap-3">
             <button
-              className="group relative bg-white text-black font-bold text-sm px-7 py-3.5 rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]"
+              className="group relative font-bold text-sm px-7 py-3.5 rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.02]"
+              style={{
+                background: "#FACC15",
+                color: "#2E1065",
+                boxShadow: "0 4px 24px #FACC1550",
+              }}
             >
               <span className="relative z-10 flex items-center gap-2">
                 🎨 Lihat Template
@@ -81,7 +131,7 @@ export default function Hero() {
                   <path
                     d="M3 8h10M9 4l4 4-4 4"
                     stroke="currentColor"
-                    strokeWidth="1.5"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
@@ -89,17 +139,71 @@ export default function Hero() {
               </span>
             </button>
 
-            <button className="text-white/70 font-semibold text-sm px-7 py-3.5 rounded-full border border-white/[0.15] hover:border-white/40 hover:text-white transition-all duration-300">
+            <button
+              className="font-semibold text-sm px-7 py-3.5 rounded-full border-2 transition-all duration-300 hover:bg-[#2E1065] hover:text-white"
+              style={{
+                borderColor: "#2E1065",
+                color: "#2E1065",
+                background: "transparent",
+              }}
+            >
               💬 Hubungi Kami
             </button>
+          </div>
+
+          {/* Trust row */}
+          <div
+            className="flex items-center gap-4 mt-10 pt-8"
+            style={{ borderTop: "1px solid #2E106514" }}
+          >
+            <div className="flex -space-x-2">
+              {["#FACC15", "#2E1065", "#FACC15BB", "#2E106599"].map((c, i) => (
+                <div
+                  key={i}
+                  className="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center text-[10px] font-bold"
+                  style={{ background: c, color: i % 2 === 0 ? "#2E1065" : "#FACC15", zIndex: 4 - i }}
+                >
+                  {["A", "B", "C", "D"][i]}
+                </div>
+              ))}
+            </div>
+            <div>
+              <div
+                className="text-xs font-bold"
+                style={{ color: "#2E1065" }}
+              >
+                12.000+ UMKM aktif
+              </div>
+              <div className="text-xs" style={{ color: "#2E106560" }}>
+                bergabung bulan ini
+              </div>
+            </div>
+            <div
+              className="ml-auto flex items-center gap-1 text-xs font-bold"
+              style={{ color: "#FACC15" }}
+            >
+              ★★★★★
+              <span className="font-normal" style={{ color: "#2E106560" }}>
+                4.9/5
+              </span>
+            </div>
           </div>
         </div>
 
         {/* RIGHT — Stats card */}
         <div className="hidden md:flex flex-col gap-4">
           {/* Main card */}
-          <div className="border border-white/10 rounded-2xl p-7 bg-white/[0.03] backdrop-blur-sm">
-            <div className="text-white/30 text-xs font-semibold uppercase tracking-widest mb-6">
+          <div
+            className="rounded-2xl p-7"
+            style={{
+              background: "#2E1065",
+              boxShadow: "0 24px 64px #2E106530",
+            }}
+          >
+            <div
+              className="text-xs font-bold uppercase tracking-widest mb-6"
+              style={{ color: "#FACC1580", letterSpacing: "0.15em" }}
+            >
               Platform Overview
             </div>
             <div className="grid grid-cols-3 gap-6 mb-8">
@@ -110,12 +214,21 @@ export default function Hero() {
               ].map((s) => (
                 <div key={s.label}>
                   <div
-                    className="text-white font-black leading-none mb-1"
-                    style={{ fontSize: "clamp(24px, 3vw, 36px)", letterSpacing: "-0.04em" }}
+                    className="font-black leading-none mb-1"
+                    style={{
+                      fontSize: "clamp(24px, 3vw, 36px)",
+                      letterSpacing: "-0.04em",
+                      color: "#FACC15",
+                    }}
                   >
                     {s.num}
                   </div>
-                  <div className="text-white/40 text-xs">{s.label}</div>
+                  <div
+                    className="text-xs"
+                    style={{ color: "#FFFFFF80" }}
+                  >
+                    {s.label}
+                  </div>
                 </div>
               ))}
             </div>
@@ -123,25 +236,46 @@ export default function Hero() {
             {/* Mini template previews */}
             <div className="grid grid-cols-3 gap-2">
               {[
-                { bg: "#0D0D0D", label: "Ekspor" },
-                { bg: "#141414", label: "Company" },
-                { bg: "#111", label: "Agrikultur" },
+                { bg: "#1a0a3d", label: "Ekspor" },
+                { bg: "#220d4e", label: "Company" },
+                { bg: "#180840", label: "Agrikultur" },
               ].map((t, i) => (
                 <div
                   key={i}
-                  className="rounded-lg overflow-hidden border border-white/10 aspect-[4/3] flex flex-col justify-between p-2.5"
-                  style={{ background: t.bg }}
+                  className="rounded-xl overflow-hidden aspect-[4/3] flex flex-col justify-between p-2.5"
+                  style={{
+                    background: t.bg,
+                    border: "1px solid #FACC1520",
+                  }}
                 >
                   <div className="flex gap-1">
-                    <div className="h-1 w-8 bg-white/20 rounded-full" />
-                    <div className="h-1 w-4 bg-white/10 rounded-full" />
+                    <div
+                      className="h-1 w-8 rounded-full"
+                      style={{ background: "#FACC1540" }}
+                    />
+                    <div
+                      className="h-1 w-4 rounded-full"
+                      style={{ background: "#FFFFFF20" }}
+                    />
                   </div>
                   <div>
-                    <div className="h-1.5 w-10 bg-white/40 rounded-full mb-1" />
-                    <div className="h-1 w-7 bg-white/20 rounded-full mb-2" />
-                    <div className="h-4 w-12 bg-white/90 rounded-md" />
+                    <div
+                      className="h-1.5 w-10 rounded-full mb-1"
+                      style={{ background: "#FFFFFF60" }}
+                    />
+                    <div
+                      className="h-1 w-7 rounded-full mb-2"
+                      style={{ background: "#FFFFFF30" }}
+                    />
+                    <div
+                      className="h-4 w-12 rounded-md"
+                      style={{ background: "#FACC15" }}
+                    />
                   </div>
-                  <div className="text-white/30 text-[9px] font-semibold uppercase tracking-wider">
+                  <div
+                    className="text-[9px] font-bold uppercase tracking-wider"
+                    style={{ color: "#FACC1570" }}
+                  >
                     {t.label}
                   </div>
                 </div>
@@ -151,29 +285,62 @@ export default function Hero() {
 
           {/* Bottom row */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="border border-white/10 rounded-xl p-5 bg-white/[0.02]">
-              <div className="text-white/30 text-[10px] uppercase tracking-widest mb-2">
+            <div
+              className="rounded-xl p-5"
+              style={{
+                background: "#FFFFFF",
+                border: "2px solid #2E106514",
+                boxShadow: "0 4px 20px #2E106510",
+              }}
+            >
+              <div
+                className="text-[10px] uppercase tracking-widest mb-2 font-bold"
+                style={{ color: "#2E106550", letterSpacing: "0.12em" }}
+              >
                 Online dalam
               </div>
-              <div className="text-white font-black text-2xl" style={{ letterSpacing: "-0.04em" }}>
+              <div
+                className="font-black text-2xl"
+                style={{ letterSpacing: "-0.04em", color: "#2E1065" }}
+              >
                 24 Jam
               </div>
             </div>
-            <div className="border border-white/10 rounded-xl p-5 bg-white text-black">
-              <div className="text-black/40 text-[10px] uppercase tracking-widest mb-2">
+            <div
+              className="rounded-xl p-5"
+              style={{ background: "#FACC15" }}
+            >
+              <div
+                className="text-[10px] uppercase tracking-widest mb-2 font-bold"
+                style={{ color: "#2E106570", letterSpacing: "0.12em" }}
+              >
                 Mulai dari
               </div>
-              <div className="font-black text-2xl" style={{ letterSpacing: "-0.04em" }}>
+              <div
+                className="font-black text-2xl"
+                style={{ letterSpacing: "-0.04em", color: "#2E1065" }}
+              >
                 Rp97rb
               </div>
-              <div className="text-black/40 text-[10px] mt-0.5">/tahun</div>
+              <div
+                className="text-[10px] mt-0.5"
+                style={{ color: "#2E106360" }}
+              >
+                /tahun
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white/80 to-transparent pointer-events-none" />
+
+      {/* Yellow accent corner bottom-right */}
+      <div
+        className="absolute bottom-0 right-0 w-48 h-48 rounded-tl-[60px] opacity-10 hidden md:block"
+        style={{ background: "#FACC15" }}
+      />
     </section>
   );
 }
