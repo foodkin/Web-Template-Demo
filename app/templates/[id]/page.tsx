@@ -1,11 +1,10 @@
+'use client';
+
 import { allTemplates } from '@/data/templates';
 import TemplatePreview from '@/components/template/TemplatePreview';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-
-export function generateStaticParams() {
-    return allTemplates.map((t) => ({ id: String(t.id) }));
-}
+import { useState, useEffect } from 'react';
 
 export default function TemplateDetailPage({ params }: { params: { id: string } }) {
     const template = allTemplates.find((t) => t.id === Number(params.id));
@@ -14,18 +13,81 @@ export default function TemplateDetailPage({ params }: { params: { id: string } 
         return notFound();
     }
 
+    return <TemplateDetailClient template={template} />;
+}
+
+/* ── CLIENT COMPONENT ── */
+function TemplateDetailClient({ template }: { template: (typeof allTemplates)[number] }) {
+    const [showPreview, setShowPreview] = useState(false);
+    const [previewReady, setPreviewReady] = useState(false);
+
     const related = allTemplates
         .filter((t) => t.category === template.category && t.id !== template.id)
         .slice(0, 3);
 
+    const previewUrl = `/api/preview/${template.id}`;
+
+    // Check if the template has an actual HTML preview
+    useEffect(() => {
+        fetch(previewUrl, { method: 'HEAD' })
+            .then((res) => { if (res.ok) setPreviewReady(true); })
+            .catch(() => setPreviewReady(false));
+    }, [previewUrl]);
+
     return (
         <div className="min-h-screen" style={{ background: '#FFFFFF' }}>
 
+            {/* ── LIVE PREVIEW MODAL ── */}
+            {showPreview && (
+                <div
+                    className="fixed inset-0 z-50 flex flex-col"
+                    style={{ background: '#0a0a0a' }}
+                >
+                    {/* Modal toolbar */}
+                    <div
+                        className="flex items-center gap-4 px-6 py-3 flex-shrink-0"
+                        style={{ background: '#1a1a1a', borderBottom: '1px solid #ffffff10' }}
+                    >
+                        <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 rounded-full bg-red-500" />
+                            <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                            <div className="w-3 h-3 rounded-full bg-green-500" />
+                        </div>
+                        <div
+                            className="flex-1 h-8 rounded-lg px-4 flex items-center text-xs"
+                            style={{ background: '#2a2a2a', color: '#ffffff40' }}
+                        >
+                            Preview: {template.title}
+                        </div>
+                        <a
+                            href={previewUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-4 py-2 rounded-full text-xs font-bold transition-all hover:opacity-80"
+                            style={{ background: '#ffffff15', color: '#FFFFFF' }}
+                        >
+                            ↗ Buka Tab Baru
+                        </a>
+                        <button
+                            onClick={() => setShowPreview(false)}
+                            className="px-4 py-2 rounded-full text-xs font-bold transition-all hover:opacity-80"
+                            style={{ background: '#FACC15', color: '#2E1065' }}
+                        >
+                            ✕ Tutup Preview
+                        </button>
+                    </div>
+
+                    {/* Iframe */}
+                    <iframe
+                        src={previewUrl}
+                        title={`Preview: ${template.title}`}
+                        className="flex-1 w-full border-0"
+                    />
+                </div>
+            )}
+
             {/* ── BREADCRUMB ── */}
-            <div
-                className="px-6 py-3 border-b"
-                style={{ borderColor: '#2E106510' }}
-            >
+            <div className="px-6 py-3 border-b" style={{ borderColor: '#2E106510' }}>
                 <div className="max-w-6xl mx-auto flex items-center gap-2 text-xs" style={{ color: '#2E106550' }}>
                     <Link href="/" className="hover:underline" style={{ color: '#2E1065' }}>Home</Link>
                     <span>/</span>
@@ -70,10 +132,7 @@ export default function TemplateDetailPage({ params }: { params: { id: string } 
                                                 />
                                             ))}
                                         </div>
-                                        <div
-                                            className="text-[8px] font-bold mt-2"
-                                            style={{ color: template.headerAccent }}
-                                        >
+                                        <div className="text-[8px] font-bold mt-2" style={{ color: template.headerAccent }}>
                                             Halaman {i}
                                         </div>
                                     </div>
@@ -122,10 +181,7 @@ export default function TemplateDetailPage({ params }: { params: { id: string } 
                         </div>
 
                         {/* Desc */}
-                        <p
-                            className="text-sm leading-relaxed mb-8 max-w-lg"
-                            style={{ color: '#2E106580' }}
-                        >
+                        <p className="text-sm leading-relaxed mb-8 max-w-lg" style={{ color: '#2E106580' }}>
                             {template.desc}
                         </p>
 
@@ -187,16 +243,13 @@ export default function TemplateDetailPage({ params }: { params: { id: string } 
                         {/* Price + CTA */}
                         <div
                             className="flex items-end gap-4 p-6 rounded-2xl mb-4"
-                            style={{ background: '#2E1065', boxShadow: '0 8px 40px #2E106530' }}
+                            style={{ background: '#2E1065', boxShadow: '0 8px 40px #2E106330' }}
                         >
                             <div>
                                 <div className="text-xs uppercase tracking-widest mb-1" style={{ color: '#ffffff50' }}>
                                     Harga
                                 </div>
-                                <div
-                                    className="font-black text-3xl"
-                                    style={{ color: '#FACC15', letterSpacing: '-0.04em' }}
-                                >
+                                <div className="font-black text-3xl" style={{ color: '#FACC15', letterSpacing: '-0.04em' }}>
                                     Rp{template.price}rb
                                 </div>
                                 <div className="text-xs mt-0.5" style={{ color: '#ffffff40' }}>/tahun + domain gratis</div>
@@ -209,16 +262,33 @@ export default function TemplateDetailPage({ params }: { params: { id: string } 
                                 >
                                     Pilih Template Ini
                                 </button>
-                                <button
-                                    className="w-full py-2.5 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-105"
-                                    style={{
-                                        background: 'transparent',
-                                        color: '#ffffff80',
-                                        border: '1.5px solid #ffffff20',
-                                    }}
-                                >
-                                    👁 Preview Live
-                                </button>
+                                {previewReady ? (
+                                    <button
+                                        onClick={() => setShowPreview(true)}
+                                        className="w-full py-2.5 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-105"
+                                        style={{
+                                            background: 'transparent',
+                                            color: '#ffffff80',
+                                            border: '1.5px solid #ffffff20',
+                                        }}
+                                    >
+                                        👁 Preview Live
+                                    </button>
+                                ) : (
+                                    <a
+                                        href={previewUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full py-2.5 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-105 text-center block"
+                                        style={{
+                                            background: 'transparent',
+                                            color: '#ffffff80',
+                                            border: '1.5px solid #ffffff20',
+                                        }}
+                                    >
+                                        👁 Preview Live
+                                    </a>
+                                )}
                             </div>
                         </div>
 
@@ -271,55 +341,50 @@ export default function TemplateDetailPage({ params }: { params: { id: string } 
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {related.map((t) => {
-                                return (
-                                    <Link key={t.id} href={`/templates/${t.id}`} className="block group">
-                                        <div
-                                            className="relative rounded-2xl overflow-hidden transition-all duration-300 group-hover:-translate-y-1.5"
-                                            style={{
-                                                aspectRatio: '4/3',
-                                                boxShadow: '0 4px 20px #2E106310',
-                                                border: '2px solid transparent',
-                                            }}
-                                        >
-                                            {/* Thumb */}
-                                            <div className="absolute inset-0 flex flex-col p-5" style={{ background: t.headerBg }}>
-                                                <div className="flex items-center gap-1.5 mb-4">
-                                                    <div className="w-2 h-2 rounded-full bg-red-300" />
-                                                    <div className="w-2 h-2 rounded-full bg-yellow-300" />
-                                                    <div className="w-2 h-2 rounded-full bg-green-300" />
-                                                    <div className="ml-2 flex-1 h-3 rounded-full" style={{ background: `${t.headerAccent}25` }} />
-                                                </div>
-                                                <div className="flex flex-col gap-2.5 flex-1 justify-center">
-                                                    {t.thumb.map((b, i) => (
-                                                        <div key={i} style={{ width: b.w, height: b.h, background: b.bg, borderRadius: b.br }} />
-                                                    ))}
-                                                </div>
+                            {related.map((t) => (
+                                <Link key={t.id} href={`/templates/${t.id}`} className="block group">
+                                    <div
+                                        className="relative rounded-2xl overflow-hidden transition-all duration-300 group-hover:-translate-y-1.5"
+                                        style={{
+                                            aspectRatio: '4/3',
+                                            boxShadow: '0 4px 20px #2E106310',
+                                            border: '2px solid transparent',
+                                        }}
+                                    >
+                                        <div className="absolute inset-0 flex flex-col p-5" style={{ background: t.headerBg }}>
+                                            <div className="flex items-center gap-1.5 mb-4">
+                                                <div className="w-2 h-2 rounded-full bg-red-300" />
+                                                <div className="w-2 h-2 rounded-full bg-yellow-300" />
+                                                <div className="w-2 h-2 rounded-full bg-green-300" />
+                                                <div className="ml-2 flex-1 h-3 rounded-full" style={{ background: `${t.headerAccent}25` }} />
                                             </div>
-
-                                            {/* Overlay */}
-                                            <div
-                                                className="absolute inset-0 flex flex-col justify-end"
-                                                style={{ background: 'linear-gradient(to top, #2E1065DD 35%, transparent 100%)' }}
-                                            >
-                                                <div className="p-4">
-                                                    <div className="text-[10px] font-bold uppercase tracking-widest mb-0.5" style={{ color: '#FACC1590' }}>{t.category}</div>
-                                                    <div className="font-black text-sm" style={{ color: '#FFFFFF', fontFamily: "'Georgia', serif" }}>{t.title}</div>
-                                                    <div className="text-xs mt-1 font-bold" style={{ color: '#FACC15' }}>Rp{t.price}rb</div>
-                                                </div>
-                                            </div>
-
-                                            {/* Badge */}
-                                            <div
-                                                className="absolute top-3 left-3 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider z-10"
-                                                style={{ background: '#FACC15', color: '#2E1065' }}
-                                            >
-                                                {t.badge}
+                                            <div className="flex flex-col gap-2.5 flex-1 justify-center">
+                                                {t.thumb.map((b, i) => (
+                                                    <div key={i} style={{ width: b.w, height: b.h, background: b.bg, borderRadius: b.br }} />
+                                                ))}
                                             </div>
                                         </div>
-                                    </Link>
-                                );
-                            })}
+
+                                        <div
+                                            className="absolute inset-0 flex flex-col justify-end"
+                                            style={{ background: 'linear-gradient(to top, #2E1065DD 35%, transparent 100%)' }}
+                                        >
+                                            <div className="p-4">
+                                                <div className="text-[10px] font-bold uppercase tracking-widest mb-0.5" style={{ color: '#FACC1590' }}>{t.category}</div>
+                                                <div className="font-black text-sm" style={{ color: '#FFFFFF', fontFamily: "'Georgia', serif" }}>{t.title}</div>
+                                                <div className="text-xs mt-1 font-bold" style={{ color: '#FACC15' }}>Rp{t.price}rb</div>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            className="absolute top-3 left-3 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider z-10"
+                                            style={{ background: '#FACC15', color: '#2E1065' }}
+                                        >
+                                            {t.badge}
+                                        </div>
+                                    </div>
+                                </Link>
+                            ))}
                         </div>
                     </div>
                 </section>

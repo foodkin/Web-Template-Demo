@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ekspor Nusantara — Bisnis Ekspor Skala Internasional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #EA580C;
+      --orange-light: #FFF7ED;
+      --orange-mid: #FED7AA;
+      --dark: #1C0A00;
+      --dark-mid: #3D1C08;
+      --white: #FFFBF7;
+      --gray: #78716C;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-24px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .fade-up { animation: fadeUp 0.7s ease forwards; }
+    .fade-up-1 { animation-delay: 0.1s; opacity: 0; }
+    .fade-up-2 { animation-delay: 0.25s; opacity: 0; }
+    .fade-up-3 { animation-delay: 0.4s; opacity: 0; }
+    .fade-up-4 { animation-delay: 0.55s; opacity: 0; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      background: rgba(255, 251, 247, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid #EA580C18;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 900;
+      color: var(--dark);
+      text-decoration: none;
+    }
+    .nav-logo-mark {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--orange);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 900; color: #fff;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none; font-size: 13px; font-weight: 500;
+      color: var(--dark-mid); transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .nav-links a:hover { color: var(--orange); }
+
+    .nav-cta {
+      padding: 10px 24px;
+      background: var(--orange); color: #fff;
+      border: none; border-radius: 100px;
+      font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+      text-decoration: none;
+    }
+    .nav-cta:hover { background: #c2410c; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      padding: 140px 48px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 800px 600px at 70% 50%, #FED7AA55 0%, transparent 70%),
+        radial-gradient(ellipse 400px 400px at 10% 80%, #EA580C12 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange); color: #fff;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: #fff; }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(44px, 5vw, 72px);
+      font-weight: 900;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      color: var(--dark);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--orange);
+      position: relative;
+    }
+    .hero h1 em::after {
+      content: '';
+      position: absolute; left: 0; right: 0; bottom: -4px;
+      height: 3px; background: var(--orange); border-radius: 2px;
+    }
+
+    .hero-desc {
+      font-size: 16px; line-height: 1.7; color: var(--gray);
+      max-width: 440px; margin-bottom: 40px;
+    }
+
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+    .btn-primary {
+      padding: 14px 32px;
+      background: var(--orange); color: #fff;
+      border: none; border-radius: 100px;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all 0.25s;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { background: #c2410c; transform: translateY(-2px); box-shadow: 0 12px 32px #EA580C40; }
+
+    .btn-ghost {
+      padding: 14px 32px;
+      background: transparent; color: var(--dark);
+      border: 1.5px solid #1C0A0030; border-radius: 100px;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all 0.25s;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 40px; margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid #1C0A0012;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px; font-weight: 900;
+      color: var(--dark); letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .stat-num span { color: var(--orange); }
+    .stat-label {
+      font-size: 11px; font-weight: 500; color: var(--gray);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    /* Hero right — visual */
+    .hero-visual {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .hero-card-main {
+      width: 100%;
+      max-width: 420px;
+      background: var(--dark);
+      border-radius: 24px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 40px 80px #1C0A0030;
+    }
+    .hero-card-main::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, #EA580C40 0%, transparent 70%);
+    }
+
+    .card-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #EA580C20; color: var(--orange);
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .card-product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 900; color: #fff;
+      line-height: 1.15; margin-bottom: 12px;
+    }
+    .card-product-desc {
+      font-size: 13px; color: #ffffff60; line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .card-specs {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px; margin-bottom: 28px;
+    }
+    .spec-item {
+      background: #ffffff08; border-radius: 12px; padding: 12px 14px;
+    }
+    .spec-label { font-size: 10px; color: #ffffff40; text-transform: uppercase; letter-spacing: 0.08em; }
+    .spec-val { font-size: 14px; font-weight: 700; color: #fff; margin-top: 2px; }
+
+    .card-cta {
+      width: 100%;
+      padding: 14px;
+      background: var(--orange); color: #fff;
+      border: none; border-radius: 12px;
+      font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .card-cta:hover { background: #c2410c; }
+
+    /* Floating badge */
+    .float-badge {
+      position: absolute;
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px 18px;
+      box-shadow: 0 8px 32px #1C0A0020;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .float-badge.top-left { top: -20px; left: -30px; }
+    .float-badge.bot-right { bottom: -16px; right: -30px; }
+    .badge-icon { font-size: 20px; }
+    .badge-text-top { font-size: 10px; color: var(--gray); }
+    .badge-text-bot { font-size: 13px; font-weight: 700; color: var(--dark); }
+
+    /* ── TICKER ── */
+    .ticker {
+      overflow: hidden;
+      background: var(--orange);
+      padding: 14px 0;
+      white-space: nowrap;
+    }
+    .ticker-inner {
+      display: inline-flex; gap: 0;
+      animation: marquee 22s linear infinite;
+    }
+    .ticker-item {
+      display: inline-flex; align-items: center; gap: 16px;
+      padding: 0 32px;
+      font-size: 13px; font-weight: 600; color: #fff;
+      letter-spacing: 0.04em;
+    }
+    .ticker-sep { opacity: 0.4; font-size: 18px; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 96px 48px; }
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 16px; line-height: 1.7; color: var(--gray);
+      max-width: 520px;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--dark);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+
+    .about .section-eyebrow { color: var(--orange); }
+    .about .section-title { color: #fff; }
+    .about .section-subtitle { color: #ffffff70; }
+
+    .about-pillars {
+      display: flex; flex-direction: column; gap: 20px;
+      margin-top: 40px;
+    }
+    .pillar {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px; border-radius: 16px;
+      background: #ffffff08;
+      border: 1px solid #ffffff10;
+      transition: all 0.25s;
+    }
+    .pillar:hover { background: #ffffff12; border-color: #EA580C30; }
+    .pillar-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--orange); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .pillar-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .pillar-desc { font-size: 13px; color: #ffffff50; line-height: 1.5; }
+
+    /* About right visual */
+    .about-visual {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .about-card {
+      background: #ffffff0A; border: 1px solid #ffffff12;
+      border-radius: 20px; padding: 28px;
+      transition: all 0.25s;
+    }
+    .about-card:hover { background: #ffffff14; transform: translateY(-4px); }
+    .about-card:first-child { grid-column: span 2; }
+    .about-card-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px; font-weight: 900; color: var(--orange);
+      letter-spacing: -0.04em; line-height: 1;
+    }
+    .about-card-label { font-size: 13px; color: #ffffff60; margin-top: 6px; }
+
+    /* ── PRODUCTS ── */
+    .products { background: var(--white); }
+    .products-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 52px; flex-wrap: wrap; gap: 24px;
+    }
+    .products-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .product-card {
+      border-radius: 20px; overflow: hidden;
+      background: #fff;
+      border: 1.5px solid #1C0A000A;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px #1C0A0012;
+      border-color: #EA580C30;
+    }
+    .product-thumb {
+      height: 180px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 56px;
+      position: relative; overflow: hidden;
+    }
+    .product-body { padding: 24px; }
+    .product-tag {
+      display: inline-block;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--orange); background: #EA580C14;
+      padding: 4px 10px; border-radius: 100px;
+      margin-bottom: 10px;
+    }
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700; color: var(--dark);
+      margin-bottom: 8px; line-height: 1.3;
+    }
+    .product-desc { font-size: 13px; color: var(--gray); line-height: 1.6; margin-bottom: 20px; }
+    .product-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid #1C0A000A;
+    }
+    .product-origin { font-size: 11px; color: var(--gray); }
+    .product-link {
+      font-size: 12px; font-weight: 700; color: var(--orange);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 4px;
+      transition: gap 0.2s;
+    }
+    .product-link:hover { gap: 8px; }
+
+    /* ── INQUIRY / FORM ── */
+    .inquiry {
+      background: var(--orange-light);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+
+    .form-box {
+      background: #fff;
+      border-radius: 24px; padding: 40px;
+      box-shadow: 0 16px 60px #EA580C14;
+    }
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 900; color: var(--dark);
+      margin-bottom: 28px; line-height: 1.3;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--dark-mid); margin-bottom: 8px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 12px 16px;
+      border: 1.5px solid #1C0A0014;
+      border-radius: 10px;
+      font-size: 14px; font-family: 'DM Sans', sans-serif;
+      color: var(--dark); background: #FFFBF7;
+      transition: border-color 0.2s; outline: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px #EA580C14;
+    }
+    .form-textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%; padding: 14px;
+      background: var(--orange); color: #fff;
+      border: none; border-radius: 10px;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer; transition: all 0.25s;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: #c2410c; transform: translateY(-2px); box-shadow: 0 10px 32px #EA580C40; }
+
+    /* ── TESTIMONIAL ── */
+    .testimonials { background: var(--white); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 52px; }
+    .testi-card {
+      background: #fff;
+      border-radius: 20px; padding: 28px;
+      border: 1.5px solid #1C0A000A;
+      transition: all 0.25s;
+    }
+    .testi-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px #1C0A0010; }
+    .testi-stars { color: var(--orange); font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
+    .testi-text { font-size: 14px; line-height: 1.7; color: var(--gray); margin-bottom: 20px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--orange); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 900; font-family: 'Playfair Display', serif;
+      flex-shrink: 0;
+    }
+    .testi-name { font-size: 13px; font-weight: 700; color: var(--dark); }
+    .testi-company { font-size: 11px; color: var(--gray); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 64px 48px 32px;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+      border-bottom: 1px solid #ffffff12;
+    }
+    .footer-brand .nav-logo { color: #fff; margin-bottom: 16px; }
+    .footer-brand-desc { font-size: 13px; color: #ffffff50; line-height: 1.7; max-width: 260px; }
+    .footer-col-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #ffffff40; margin-bottom: 16px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      text-decoration: none; font-size: 13px; color: #ffffff60;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--orange); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 32px; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 12px; color: #ffffff30; }
+    .footer-socials { display: flex; gap: 12px; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: #ffffff10; color: #ffffff60;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; cursor: pointer; transition: all 0.2s;
+      text-decoration: none;
+    }
+    .social-btn:hover { background: var(--orange); color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 40px; }
+      .hero-visual { display: none; }
+      section { padding: 64px 24px; }
+      .about, .inquiry { grid-template-columns: 1fr; gap: 40px; }
+      .products-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-mark">EN</div>
+    Ekspor Nusantara
+  </a>
+  <ul class="nav-links">
+    <li><a href="#tentang">Tentang Kami</a></li>
+    <li><a href="#produk">Produk</a></li>
+    <li><a href="#inquiry">Inquiry</a></li>
+    <li><a href="#testimoni">Testimoni</a></li>
+  </ul>
+  <a class="nav-cta" href="#inquiry">Hubungi Kami</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" style="padding-top:140px;">
+  <div class="hero-left">
+    <div class="hero-eyebrow fade-up fade-up-1">
+      <span class="hero-eyebrow-dot"></span>
+      Ekspor Skala Internasional
+    </div>
+    <h1 class="fade-up fade-up-2">
+      Kekayaan <em>Nusantara</em><br/>Mendunia
+    </h1>
+    <p class="hero-desc fade-up fade-up-3">
+      Kami menghubungkan produsen lokal terbaik Indonesia dengan pasar global. Dari rempah Maluku hingga tekstil Jawa — semua siap ekspor.
+    </p>
+    <div class="hero-actions fade-up fade-up-4">
+      <a class="btn-primary" href="#produk">
+        Lihat Produk ↓
+      </a>
+      <a class="btn-ghost" href="#inquiry">
+        Kirim Inquiry
+      </a>
+    </div>
+    <div class="hero-stats fade-up fade-up-4">
+      <div>
+        <div class="stat-num">12<span>+</span></div>
+        <div class="stat-label">Negara Tujuan</div>
+      </div>
+      <div>
+        <div class="stat-num">200<span>+</span></div>
+        <div class="stat-label">Produk Unggulan</div>
+      </div>
+      <div>
+        <div class="stat-num">8<span>th</span></div>
+        <div class="stat-label">Tahun Berdiri</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div style="position:relative; width:100%; max-width:420px;">
+      <div class="hero-card-main fade-up fade-up-2">
+        <div class="card-tag">
+          ★ Produk Unggulan
+        </div>
+        <div class="card-product-name">Kopi Arabika<br/>Gayo Premium</div>
+        <div class="card-product-desc">Single origin dari dataran tinggi Gayo, Aceh. Diproses basah untuk profil rasa bright & floral.</div>
+        <div class="card-specs">
+          <div class="spec-item">
+            <div class="spec-label">Asal</div>
+            <div class="spec-val">Aceh, ID</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Grade</div>
+            <div class="spec-val">Specialty</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Min. Order</div>
+            <div class="spec-val">100 kg</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Sertifikat</div>
+            <div class="spec-val">Organic</div>
+          </div>
+        </div>
+        <button class="card-cta">Kirim Inquiry →</button>
+      </div>
+
+      <div class="float-badge top-left fade-up fade-up-3">
+        <div class="badge-icon">🌍</div>
+        <div>
+          <div class="badge-text-top">Ekspor ke</div>
+          <div class="badge-text-bot">25 Negara</div>
+        </div>
+      </div>
+
+      <div class="float-badge bot-right fade-up fade-up-4">
+        <div class="badge-icon">✅</div>
+        <div>
+          <div class="badge-text-top">Bersertifikat</div>
+          <div class="badge-text-bot">Halal & Organic</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">☕ Kopi Arabika Gayo <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🌶 Rempah Maluku <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🫙 Minyak Kelapa VCO <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🎋 Produk Bambu <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🧴 Produk Kosmetik Herbal <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🍫 Kakao Fermentasi <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🌿 Teh Organik Jawa <span class="ticker-sep">·</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">☕ Kopi Arabika Gayo <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🌶 Rempah Maluku <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🫙 Minyak Kelapa VCO <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🎋 Produk Bambu <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🧴 Produk Kosmetik Herbal <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🍫 Kakao Fermentasi <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🌿 Teh Organik Jawa <span class="ticker-sep">·</span></span>
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section class="about" id="tentang">
+  <div>
+    <div class="section-eyebrow">✦ Tentang Kami</div>
+    <h2 class="section-title">Mitra Ekspor<br/>yang Kamu Butuhkan</h2>
+    <p class="section-subtitle">
+      Ekspor Nusantara berdiri sejak 2016 sebagai jembatan antara produsen lokal Indonesia dengan buyer internasional. Kami menyederhanakan proses ekspor dari A sampai Z.
+    </p>
+    <div class="about-pillars">
+      <div class="pillar">
+        <div class="pillar-icon">🔍</div>
+        <div>
+          <div class="pillar-title">Sourcing & Quality Control</div>
+          <div class="pillar-desc">Kami seleksi ketat setiap produk sebelum dikirim ke buyer. Standar internasional adalah minimum kami.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">📦</div>
+        <div>
+          <div class="pillar-title">Logistik End-to-End</div>
+          <div class="pillar-desc">Pengurusan dokumen ekspor, customs clearance, sampai pengiriman ke pintu buyer ditangani tim berpengalaman kami.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🤝</div>
+        <div>
+          <div class="pillar-title">Pendampingan B2B</div>
+          <div class="pillar-desc">Konsultasi gratis untuk produsen lokal yang ingin memulai ekspor. Kami bantu dari legalitas hingga negosiasi harga.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-visual">
+    <div class="about-card">
+      <div class="about-card-num">Rp 48M+</div>
+      <div class="about-card-label">Total nilai ekspor tahun ini</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-num">320+</div>
+      <div class="about-card-label">Produsen lokal bermitra</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-num">12</div>
+      <div class="about-card-label">Negara tujuan aktif</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-num">98%</div>
+      <div class="about-card-label">Kepuasan buyer internasional</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ── -->
+<section class="products" id="produk">
+  <div class="products-header">
+    <div>
+      <div class="section-eyebrow">✦ Katalog Produk</div>
+      <h2 class="section-title">Produk Pilihan<br/>Siap Ekspor</h2>
+    </div>
+    <a class="btn-ghost" href="#inquiry">Lihat Semua Produk →</a>
+  </div>
+
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-thumb" style="background:linear-gradient(135deg,#FFF7ED,#FED7AA);">☕</div>
+      <div class="product-body">
+        <span class="product-tag">Agrikultur</span>
+        <div class="product-name">Kopi Arabika Gayo</div>
+        <div class="product-desc">Single origin specialty grade dari Aceh. Profil rasa floral, citrus, dan karamel. Tersedia green bean & roasted.</div>
+        <div class="product-footer">
+          <span class="product-origin">📍 Aceh, Indonesia</span>
+          <a class="product-link" href="#inquiry">Inquiry →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb" style="background:linear-gradient(135deg,#FFF7ED,#fdba74);">🌶</div>
+      <div class="product-body">
+        <span class="product-tag">Rempah</span>
+        <div class="product-name">Rempah Premium Maluku</div>
+        <div class="product-desc">Pala, cengkih, dan kayu manis asli Maluku. Sudah memiliki sertifikasi organik internasional untuk pasar Eropa.</div>
+        <div class="product-footer">
+          <span class="product-origin">📍 Maluku, Indonesia</span>
+          <a class="product-link" href="#inquiry">Inquiry →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb" style="background:linear-gradient(135deg,#ECFDF5,#bbf7d0);">🫙</div>
+      <div class="product-body">
+        <span class="product-tag">Minyak Nabati</span>
+        <div class="product-name">Virgin Coconut Oil</div>
+        <div class="product-desc">Cold-pressed VCO dari kelapa segar Sulawesi. Tersedia kemasan retail & bulk. Sertifikat BPOM & Halal.</div>
+        <div class="product-footer">
+          <span class="product-origin">📍 Sulawesi, Indonesia</span>
+          <a class="product-link" href="#inquiry">Inquiry →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb" style="background:linear-gradient(135deg,#FDF4FF,#f5d0fe);">🧴</div>
+      <div class="product-body">
+        <span class="product-tag">Kosmetik Herbal</span>
+        <div class="product-name">Skincare Kunyit & Temulawak</div>
+        <div class="product-desc">Rangkaian skincare dari bahan herbal asli Indonesia. Formula tradisional yang telah diuji dermatologis.</div>
+        <div class="product-footer">
+          <span class="product-origin">📍 Jawa, Indonesia</span>
+          <a class="product-link" href="#inquiry">Inquiry →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb" style="background:linear-gradient(135deg,#FFFBEB,#fef08a);">🍫</div>
+      <div class="product-body">
+        <span class="product-tag">Cokelat</span>
+        <div class="product-name">Kakao Fermentasi Sulawesi</div>
+        <div class="product-desc">Biji kakao fermentasi sempurna dengan profil rasa kompleks. Favorit chocolatier artisan di Eropa dan Jepang.</div>
+        <div class="product-footer">
+          <span class="product-origin">📍 Sulawesi, Indonesia</span>
+          <a class="product-link" href="#inquiry">Inquiry →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb" style="background:linear-gradient(135deg,#F0FDF4,#86efac);">🎋</div>
+      <div class="product-body">
+        <span class="product-tag">Kerajinan</span>
+        <div class="product-name">Produk Bambu Handcraft</div>
+        <div class="product-desc">Perabotan dan aksesori berbahan bambu organik. Ramah lingkungan dan diminati pasar Eropa & Amerika Utara.</div>
+        <div class="product-footer">
+          <span class="product-origin">📍 Jawa Barat, Indonesia</span>
+          <a class="product-link" href="#inquiry">Inquiry →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── INQUIRY ── -->
+<section class="inquiry" id="inquiry">
+  <div>
+    <div class="section-eyebrow">✦ Form Inquiry</div>
+    <h2 class="section-title">Siap Mulai<br/>Kerjasama?</h2>
+    <p class="section-subtitle">
+      Hubungi tim kami sekarang. Kami akan membalas dalam 1×24 jam dengan penawaran terbaik dan informasi lengkap tentang produk yang kamu butuhkan.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:16px;margin-top:40px;">
+      <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:#3D1C08;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">📞</div>
+        <div><div style="font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:0.08em;">Telepon / WhatsApp</div><div style="font-weight:700;">+62 812 3456 7890</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:#3D1C08;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">✉️</div>
+        <div><div style="font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:0.08em;">Email</div><div style="font-weight:700;">hello@ekspornusantara.id</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:#3D1C08;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🕐</div>
+        <div><div style="font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:0.08em;">Jam Operasional</div><div style="font-weight:700;">Senin–Jumat, 08.00–17.00 WIB</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-box">
+    <div class="form-title">Kirim Inquiry Sekarang</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Nama Lengkap</label>
+        <input class="form-input" type="text" placeholder="John Smith" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Perusahaan</label>
+        <input class="form-input" type="text" placeholder="PT / CV / Ltd." />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email Bisnis</label>
+      <input class="form-input" type="email" placeholder="name@company.com" />
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Negara</label>
+        <select class="form-select">
+          <option>Pilih negara...</option>
+          <option>Japan</option>
+          <option>United States</option>
+          <option>Germany</option>
+          <option>Australia</option>
+          <option>UAE</option>
+          <option>Singapore</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Produk Diminati</label>
+        <select class="form-select">
+          <option>Pilih produk...</option>
+          <option>Kopi Arabika Gayo</option>
+          <option>Rempah Maluku</option>
+          <option>Virgin Coconut Oil</option>
+          <option>Kakao Fermentasi</option>
+          <option>Produk Bambu</option>
+          <option>Kosmetik Herbal</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Pesan / Detail Kebutuhan</label>
+      <textarea class="form-textarea" placeholder="Ceritakan kebutuhan Anda: volume, frekuensi pengiriman, spesifikasi produk, dll..."></textarea>
+    </div>
+    <button class="form-submit">Kirim Inquiry →</button>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials" id="testimoni">
+  <div style="text-align:center;max-width:520px;margin:0 auto;">
+    <div class="section-eyebrow" style="justify-content:center;">✦ Testimoni Buyer</div>
+    <h2 class="section-title">Apa Kata<br/>Buyer Kami</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Quality of Gayo Arabica consistently exceeds our expectations. Ekspor Nusantara makes the whole process seamless — from sampling to shipment."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">T</div>
+        <div>
+          <div class="testi-name">Takashi Mori</div>
+          <div class="testi-company">Blue Bottle Coffee Japan</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Wir beziehen seit 3 Jahren unsere Gewürze über Ekspor Nusantara. Qualität und Verlässlichkeit auf höchstem Niveau. Sehr empfehlenswert!"</div>
+      <div class="testi-author">
+        <div class="testi-avatar">A</div>
+        <div>
+          <div class="testi-name">Anna Müller</div>
+          <div class="testi-company">Gewürzhaus GmbH, Germany</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Their bamboo products are a bestseller in our eco-friendly home store. Fast shipping, proper documentation, and the team is always responsive."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div>
+          <div class="testi-name">Sarah Chen</div>
+          <div class="testi-company">EcoHome Trading, Singapore</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a class="nav-logo" href="#" style="display:inline-flex;margin-bottom:16px;">
+        <div class="nav-logo-mark">EN</div>
+        Ekspor Nusantara
+      </a>
+      <div class="footer-brand-desc">
+        Menghubungkan kekayaan alam dan budaya Indonesia dengan pasar global sejak 2016.
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigasi</div>
+      <ul class="footer-links">
+        <li><a href="#tentang">Tentang Kami</a></li>
+        <li><a href="#produk">Katalog Produk</a></li>
+        <li><a href="#inquiry">Form Inquiry</a></li>
+        <li><a href="#testimoni">Testimoni</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Produk</div>
+      <ul class="footer-links">
+        <li><a href="#">Kopi & Cokelat</a></li>
+        <li><a href="#">Rempah & Herbal</a></li>
+        <li><a href="#">Minyak Nabati</a></li>
+        <li><a href="#">Kerajinan</a></li>
+        <li><a href="#">Kosmetik</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Kontak</div>
+      <ul class="footer-links">
+        <li><a href="#">hello@ekspornusantara.id</a></li>
+        <li><a href="#">+62 812 3456 7890</a></li>
+        <li><a href="#">Jl. Gatot Subroto No.88</a></li>
+        <li><a href="#">Jakarta Selatan, 12710</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2024 Ekspor Nusantara. All rights reserved.</div>
+    <div class="footer-socials">
+      <a class="social-btn" href="#" title="Instagram">𝕀</a>
+      <a class="social-btn" href="#" title="LinkedIn">in</a>
+      <a class="social-btn" href="#" title="WhatsApp">W</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
