@@ -9,9 +9,8 @@ export async function POST(req: Request) {
     }
 
     const pagesDescription = pages
-      .map(
-        (p: { name: string; detail: string }) =>
-          `- Halaman "${p.name}": ${p.detail || 'Konten umum untuk halaman ini'}`
+      .map((p: { name: string; detail: string }) =>
+        `- Halaman "${p.name}": ${p.detail || 'Konten umum untuk halaman ini'}`
       )
       .join('\n');
 
@@ -36,32 +35,39 @@ INSTRUKSI PENTING:
 
 Mulai langsung dengan <!DOCTYPE html>`;
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const apiKey = process.env.GROQ_API_KEY
+
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY!,
-        'anthropic-version': '2023-06-01',
+        'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'claude-opus-4-5',
+        model: 'llama-3.3-70b-versatile',
         max_tokens: 8192,
+        temperature: 0.7,
         messages: [{ role: 'user', content: prompt }],
       }),
     });
 
+    console.log('Groq response status:', response.status);
+
     if (!response.ok) {
       const err = await response.text();
-      console.error('Anthropic API error:', err);
-      return NextResponse.json({ error: 'AI generation failed' }, { status: 500 });
+      console.error('Groq error:', response.status, err);
+      return NextResponse.json({ error: `AI error: ${response.status} - ${err}` }, { status: 500 });
     }
 
     const data = await response.json();
-    const html = data.content?.[0]?.text ?? '';
+    let html = data.choices?.[0]?.message?.content ?? '';
+
+    // Bersihkan kalau ada markdown backtick
+    html = html.replace(/^```html\n?/, '').replace(/^```\n?/, '').replace(/\n?```$/, '').trim();
 
     return NextResponse.json({ html });
   } catch (err) {
     console.error('Generate template error:', err);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    return NextResponse.json({ error: String(err) }, { status: 500 });
   }
 }
