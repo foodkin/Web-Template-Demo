@@ -11,6 +11,7 @@ export type Template = {
     thumb: { w: string; h: string; bg: string; br: string }[];
     features: string[];
     tags: string[];
+    livePreviewUrl?: string;
 };
 
 export const allTemplates: Template[] = [
@@ -32,6 +33,7 @@ export const allTemplates: Template[] = [
         ],
         features: ['Landing Page', 'Produk Katalog', 'Form Inquiry', 'Tentang Kami', 'Blog'],
         tags: ['ekspor', 'bisnis', 'internasional', 'B2B'],
+        livePreviewUrl: '/templates/template-1/index.html',
     },
     {
         id: 2,
@@ -51,6 +53,7 @@ export const allTemplates: Template[] = [
         ],
         features: ['Landing Page', 'Portofolio Ekspor', 'Kontak & Peta', 'Multi-bahasa', 'FAQ'],
         tags: ['ekspor', 'impor', 'global', 'perdagangan'],
+        livePreviewUrl: '/templates/template-2/index.html',
     },
     {
         id: 3,

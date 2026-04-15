@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { allTemplates } from '@/data/templates';
+import { allTemplates, Template } from '@/data/templates';
 import TemplatePreview from '@/components/template/TemplatePreview';
 import PaymentModal from '@/components/payment/PaymentModal';
 import Link from 'next/link';
@@ -24,9 +24,11 @@ function TemplateDetailClient({ template }: { template: (typeof allTemplates)[nu
   const [showPayment, setShowPayment]   = useState(false);
   const [purchased, setPurchased]       = useState(false);
 
-  const related = allTemplates
-    .filter((t) => t.category === template.category && t.id !== template.id)
-    .slice(0, 3);
+  const related = useMemo(() => {
+    const sameCat = allTemplates.filter((t) => t.category === template.category && t.id !== template.id);
+    const others  = allTemplates.filter((t) => t.category !== template.category && t.id !== template.id);
+    return [...sameCat, ...others].slice(0, 3);
+  }, [template]);
 
   const previewUrl = `/api/preview/${template.id}`;
 
@@ -298,7 +300,7 @@ function TemplateDetailClient({ template }: { template: (typeof allTemplates)[nu
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {related.map((t) => (
+              {related.map((t: Template) => (
                 <Link key={t.id} href={`/templates/${t.id}`} className="block group">
                   <div
                     className="relative rounded-2xl overflow-hidden transition-all duration-300 group-hover:-translate-y-1.5"
@@ -312,7 +314,7 @@ function TemplateDetailClient({ template }: { template: (typeof allTemplates)[nu
                         <div className="ml-2 flex-1 h-3 rounded-full" style={{ background: `${t.headerAccent}25` }} />
                       </div>
                       <div className="flex flex-col gap-2.5 flex-1 justify-center">
-                        {t.thumb.map((b, i) => <div key={i} style={{ width: b.w, height: b.h, background: b.bg, borderRadius: b.br }} />)}
+                        {t.thumb.map((b: any, i: number) => <div key={i} style={{ width: b.w, height: b.h, background: b.bg, borderRadius: b.br }} />)}
                       </div>
                     </div>
                     <div className="absolute inset-0 flex flex-col justify-end" style={{ background: 'linear-gradient(to top, #2E1065DD 35%, transparent 100%)' }}>

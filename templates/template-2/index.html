@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlobalTrade Pro — Solusi Perdagangan Internasional Terpercaya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --gold: #B45309;
+      --gold-mid: #D97706;
+      --gold-bg: #FFFBEB;
+      --gold-border: #FDE68A;
+      --text: #111827;
+      --text-muted: #6B7280;
+      --border: rgba(0, 0, 0, 0.08);
+      --border-hover: rgba(0, 0, 0, 0.16);
+      --bg: #FFFFFF;
+      --bg-secondary: #F9FAFB;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text: #F9FAFB;
+        --text-muted: #9CA3AF;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-hover: rgba(255, 255, 255, 0.2);
+        --bg: #111827;
+        --bg-secondary: #1F2937;
+        --gold-bg: #1C1407;
+        --gold-border: #92400E;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold-mid);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 9px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--gold-mid);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 0.5px solid var(--border-hover);
+      color: var(--text);
+    }
+
+    .btn-ghost:hover {
+      background: var(--bg-secondary);
+    }
+
+    .btn-dark {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: 80px 40px 72px;
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gold);
+      background: var(--gold-bg);
+      border: 0.5px solid var(--gold-border);
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold-mid);
+    }
+
+    .hero h1 {
+      font-size: 44px;
+      font-weight: 600;
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold-mid);
+    }
+
+    .hero p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 420px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* DASHBOARD MOCKUP */
+    .dash-card {
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .dash-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .dash-title {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .dash-badge {
+      font-size: 11px;
+      color: #065F46;
+      background: #D1FAE5;
+      padding: 3px 9px;
+      border-radius: 10px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .dash-badge {
+        color: #6EE7B7;
+        background: #064E3B;
+      }
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .metric {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .metric-val {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .metric-val.gold {
+      color: var(--gold-mid);
+    }
+
+    .ship-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ship-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .ship-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ship-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--gold-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .ship-name {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .ship-dest {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .status {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .status.transit {
+      background: #EFF6FF;
+      color: #1D4ED8;
+    }
+
+    .status.dock {
+      background: #F5F3FF;
+      color: #5B21B6;
+    }
+
+    .status.customs {
+      background: #FFFBEB;
+      color: #92400E;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .status.transit {
+        background: #1E3A5F;
+        color: #93C5FD;
+      }
+
+      .status.dock {
+        background: #2E1B5F;
+        color: #C4B5FD;
+      }
+
+      .status.customs {
+        background: #2D1B03;
+        color: #FCD34D;
+      }
+    }
+
+    .progress-bar {
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-top: 14px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: var(--gold-mid);
+      width: 72%;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .progress-meta span.gold {
+      color: var(--gold-mid);
+      font-weight: 500;
+    }
+
+    /* TRUST */
+    .trust {
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      padding: 20px 40px;
+    }
+
+    .trust-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .trust-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .trust-logos {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .trust-logo {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      opacity: 0.4;
+      letter-spacing: 0.06em;
+    }
+
+    /* STATS */
+    .stats-wrap {
+      max-width: 1100px;
+      margin: 64px auto 0;
+      padding: 0 40px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .stat {
+      background: var(--bg);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .stat-val {
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--gold-mid);
+      display: block;
+      margin-bottom: 4px;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* SECTION BASE */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-bottom: 48px;
+    }
+
+    /* FEATURES */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feat-card {
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+
+    .feat-card:hover {
+      border-color: var(--gold-border);
+    }
+
+    .feat-icon {
+      font-size: 20px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .feat-card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feat-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ABOUT */
+    .about-wrap {
+      background: var(--bg-secondary);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    @media (max-width: 960px) {
+      .about-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .about-inner h2 {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    .about-inner p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .check-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .check-icon {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border-radius: 50%;
+      background: var(--gold-bg);
+      border: 0.5px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .check-icon svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    .map-vis {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .map-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .map-grid {
+      display: grid;
+      grid-template-columns: repeat(14, 1fr);
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .map-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border-hover);
+    }
+
+    .map-dot.on {
+      background: var(--gold-mid);
+    }
+
+    .map-stat-row {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .map-stat-item {
+      text-align: center;
+    }
+
+    .map-stat-val {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gold-mid);
+      display: block;
+    }
+
+    .map-stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* TESTIMONIALS */
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .testi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .testi-card {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .testi-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 14px;
+    }
+
+    .star {
+      width: 11px;
+      height: 11px;
+      background: var(--gold-mid);
+      border-radius: 2px;
+    }
+
+    .testi-quote {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .testi-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .testi-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--gold-bg);
+      color: var(--gold);
+      border: 0.5px solid var(--gold-border);
+      flex-shrink: 0;
+    }
+
+    .testi-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .testi-role {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* PRICING */
+    .pricing-wrap {
+      background: var(--bg-secondary);
+      border-top: 0.5px solid var(--border);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .plan {
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+
+    .plan.featured {
+      background: var(--bg);
+      border: 2px solid var(--gold-mid);
+    }
+
+    .plan-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+    .plan-tag.basic {
+      background: var(--bg-secondary);
+      color: var(--text-muted);
+      border: 0.5px solid var(--border-hover);
+    }
+
+    .plan-tag.pop {
+      background: var(--gold-bg);
+      color: var(--gold);
+      border: 0.5px solid var(--gold-border);
+    }
+
+    .plan-tag.custom {
+      background: var(--bg-secondary);
+      color: var(--text-muted);
+      border: 0.5px solid var(--border-hover);
+    }
+
+    .plan-name {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .plan-price {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin: 10px 0;
+    }
+
+    .plan-price small {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .plan-divider {
+      height: 0.5px;
+      background: var(--border);
+      margin: 16px 0;
+    }
+
+    .plan-features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .plan-feat {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .plan-feat.off {
+      opacity: 0.3;
+      text-decoration: line-through;
+    }
+
+    .feat-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold-mid);
+      flex-shrink: 0;
+    }
+
+    .feat-dot.off {
+      background: var(--text-muted);
+    }
+
+    .plan-btn {
+      width: 100%;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* CTA */
+    .cta-block {
+      background: var(--gold-bg);
+      border: 0.5px solid var(--gold-border);
+      border-radius: 16px;
+      padding: 64px 48px;
+      text-align: center;
+    }
+
+    .cta-block h2 {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      margin-bottom: 12px;
+    }
+
+    .cta-block p {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .cta-btns {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    .footer-outer {
+      border-top: 0.5px solid var(--border);
+    }
+
+    .footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 40px 40px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .footer-col p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-col ul a:hover {
+      color: var(--text);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 0.5px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .socials {
+      display: flex;
+      gap: 20px;
+    }
+
+    .socials span {
+      font-size: 12px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+
+    .socials span:hover {
+      color: var(--text);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-dot"></div>
+      GlobalTrade Pro
+    </a>
+    <ul class="nav-links">
+      <li><a href="#solusi">Solusi</a></li>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#testimoni">Testimoni</a></li>
+      <li><a href="#pricing">Penawaran</a></li>
+    </ul>
+    <a href="#" class="btn btn-primary">Mulai Ekspor</a>
+  </nav>
+
+  <!-- HERO -->
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="hero">
+      <div>
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          Terpercaya sejak 2018
+        </div>
+        <h1>Ekspor produk lokal<br />ke <em>seluruh dunia.</em></h1>
+        <p>Platform terintegrasi untuk UMKM Indonesia — dari booking kontainer hingga legalitas dan pendanaan ekspor,
+          semua dalam satu dasbor.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px;">Konsultasi gratis</a>
+          <a href="#solusi" class="btn btn-ghost" style="padding: 12px 20px; font-size: 14px;">Lihat cara kerja →</a>
+        </div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-header">
+          <div class="dash-title">Pengiriman aktif</div>
+          <div class="dash-badge">● 1.248 kontainer</div>
+        </div>
+        <div class="metric-row">
+          <div class="metric">
+            <div class="metric-label">Eksportir</div>
+            <div class="metric-val gold">5,000+</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Negara</div>
+            <div class="metric-val">45+</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Ton/Tahun</div>
+            <div class="metric-val">120K</div>
+          </div>
+        </div>
+        <div class="ship-list">
+          <div class="ship-item">
+            <div class="ship-info">
+              <div class="ship-icon">🚢</div>
+              <div>
+                <div class="ship-name">Kopi Arabika — Java Bean Co.</div>
+                <div class="ship-dest">Jakarta → Rotterdam</div>
+              </div>
+            </div>
+            <div class="status transit">Transit</div>
+          </div>
+          <div class="ship-item">
+            <div class="ship-info">
+              <div class="ship-icon">🎋</div>
+              <div>
+                <div class="ship-name">Kerajinan Bambu — Bamboo Craft</div>
+                <div class="ship-dest">Surabaya → Dubai</div>
+              </div>
+            </div>
+            <div class="status dock">Berlabuh</div>
+          </div>
+          <div class="ship-item">
+            <div class="ship-info">
+              <div class="ship-icon">🌿</div>
+              <div>
+                <div class="ship-name">Rempah Pilihan — Agrita Mandiri</div>
+                <div class="ship-dest">Medan → New York</div>
+              </div>
+            </div>
+            <div class="status customs">Bea Cukai</div>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <div class="progress-meta">
+          <span>Efisiensi pengiriman bulan ini</span>
+          <span class="gold">72%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRUST BAR -->
+  <div class="trust">
+    <div class="trust-inner">
+      <span class="trust-label">Dipercaya oleh:</span>
+      <div class="trust-logos">
+        <span class="trust-logo">OCEANIC LOGISTICS</span>
+        <span class="trust-logo">SKYPORT INT</span>
+        <span class="trust-logo">GLOBAL ALIBABA</span>
+        <span class="trust-logo">FEDEX GLOBAL</span>
+        <span class="trust-logo">DHL EXPRESS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-wrap">
+    <div class="stats-grid">
+      <div class="stat">
+        <span class="stat-val">5,000+</span>
+        <span class="stat-label">Eksportir aktif</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">45+</span>
+        <span class="stat-label">Negara tujuan</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">120K</span>
+        <span class="stat-label">Ton per tahun</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">24/7</span>
+        <span class="stat-label">Dukungan langsung</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section" id="solusi">
+    <div class="section-label">Layanan kami</div>
+    <div class="section-title">Semua yang kamu butuhkan untuk ekspor</div>
+    <div class="section-sub">Dari pengurusan dokumen hingga barang sampai ke gudang pembeli di luar negeri.</div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <span class="feat-icon">🚢</span>
+        <h3>Booking kontainer</h3>
+        <p>Akses langsung ke jadwal kapal dan booking kontainer dengan harga kompetitif secara instan.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🛡️</span>
+        <h3>Kepatuhan &amp; legalitas</h3>
+        <p>Proses sertifikasi, COO, dan dokumen kepabeanan agar pengiriman lancar tanpa hambatan.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">💹</span>
+        <h3>Pendanaan ekspor</h3>
+        <p>Dukungan modal kerja untuk memproses pesanan internasional besar dengan bunga ringan.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">📊</span>
+        <h3>Analitik pasar</h3>
+        <p>Data real-time permintaan komoditas per negara tujuan agar kamu selalu selangkah lebih maju.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🔔</span>
+        <h3>Notifikasi pengiriman</h3>
+        <p>Pantau status kontainer secara langsung dari dasbor atau lewat notifikasi WhatsApp.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">🤝</span>
+        <h3>Jaringan buyer global</h3>
+        <p>Terhubung langsung ke 2.000+ buyer terverifikasi di 45 negara melalui marketplace kami.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about-wrap" id="tentang">
+    <div class="about-inner">
+      <div class="map-vis">
+        <div class="map-label">Jaringan aktif — 156 pelabuhan</div>
+        <div class="map-grid" id="mapGrid"></div>
+        <div class="map-stat-row">
+          <div class="map-stat-item">
+            <span class="map-stat-val">156</span>
+            <span class="map-stat-label">Pelabuhan</span>
+          </div>
+          <div class="map-stat-item">
+            <span class="map-stat-val">45+</span>
+            <span class="map-stat-label">Negara</span>
+          </div>
+          <div class="map-stat-item">
+            <span class="map-stat-val">1,248</span>
+            <span class="map-stat-label">Kontainer aktif</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Visi global</div>
+        <h2>Produk lokal,<br />jangkauan dunia</h2>
+        <p>Kami percaya produk Indonesia memiliki kualitas luar biasa. Misi kami adalah menghapus batasan logistik dan
+          birokrasi bagi UMKM.</p>
+        <div class="check-list">
+          <div class="check-item">
+            <div class="check-icon">
+              <svg viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 4L3.5 6.5L9 1" stroke="#D97706" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <span>Jaringan logistik di 156 pelabuhan dunia</span>
+          </div>
+          <div class="check-item">
+            <div class="check-icon">
+              <svg viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 4L3.5 6.5L9 1" stroke="#D97706" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <span>Transparansi biaya 100% tanpa biaya siluman</span>
+          </div>
+          <div class="check-item">
+            <div class="check-icon">
+              <svg viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 4L3.5 6.5L9 1" stroke="#D97706" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <span>Pendampingan tim ahli sampai barang laku</span>
+          </div>
+        </div>
+        <a href="#" class="btn btn-ghost">Pelajari selengkapnya →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="section" id="testimoni">
+    <div class="section-label">Testimoni</div>
+    <div class="section-title">Apa kata mereka</div>
+    <div class="section-sub">Kisah sukses para mitra yang telah berkembang bersama kami.</div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+        </div>
+        <div class="testi-quote">"Dahulu mengurus dokumen ekspor kopi kami memakan berminggu-minggu. Sekarang semuanya
+          beres dalam hitungan hari. Pasar kami di Eropa kini stabil."</div>
+        <div class="testi-user">
+          <div class="testi-avatar">AH</div>
+          <div>
+            <div class="testi-name">Aditya Hermawan</div>
+            <div class="testi-role">CEO, Java Bean Co.</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+        </div>
+        <div class="testi-quote">"Fitur booking kontainer real-time sangat membantu kami menjaga margin keuntungan
+          kerajinan bambu tetap kompetitif di pasar Dubai."</div>
+        <div class="testi-user">
+          <div class="testi-avatar">SR</div>
+          <div>
+            <div class="testi-name">Siti Rahayu</div>
+            <div class="testi-role">Founder, Bamboo Craft</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+          <div class="star"></div>
+        </div>
+        <div class="testi-quote">"Sangat terbantu dengan tim pendampingan legalitas. Ekspor perdana kami ke Amerika
+          Serikat berjalan sangat mulus berkat arahan mereka."</div>
+        <div class="testi-user">
+          <div class="testi-avatar">BP</div>
+          <div>
+            <div class="testi-name">Bambang Pratama</div>
+            <div class="testi-role">Direktur, Agrita Mandiri</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="pricing-wrap" id="pricing">
+    <div class="section">
+      <div class="section-label">Penawaran</div>
+      <div class="section-title">Pilih paket bisnis kamu</div>
+      <div class="section-sub">Solusi fleksibel yang menyesuaikan skala bisnis.</div>
+      <div class="pricing-grid">
+        <div class="plan">
+          <div class="plan-tag basic">Basic</div>
+          <div class="plan-name">Untuk pemula</div>
+          <div class="plan-price">Gratis <small>/bulan</small></div>
+          <div class="plan-divider"></div>
+          <div class="plan-features">
+            <div class="plan-feat">
+              <div class="feat-dot"></div>Monitoring pengiriman
+            </div>
+            <div class="plan-feat">
+              <div class="feat-dot"></div>Akses jadwal kapal
+            </div>
+            <div class="plan-feat off">
+              <div class="feat-dot off"></div>Sertifikasi legalitas
+            </div>
+            <div class="plan-feat off">
+              <div class="feat-dot off"></div>Pendanaan ekspor
+            </div>
+          </div>
+          <button class="plan-btn btn btn-ghost">Daftar gratis</button>
+        </div>
+        <div class="plan featured">
+          <div class="plan-tag pop">★ Paling populer</div>
+          <div class="plan-name">Untuk UMKM aktif</div>
+          <div class="plan-price">Rp4,5jt <small>/tahun</small></div>
+          <div class="plan-divider"></div>
+          <div class="plan-features">
+            <div class="plan-feat">
+              <div class="feat-dot"></div>Semua fitur Basic
+            </div>
+            <div class="plan-feat">
+              <div class="feat-dot"></div>Pengurusan legalitas penuh
+            </div>
+            <div class="plan-feat">
+              <div class="feat-dot"></div>Prioritas booking kapal
+            </div>
+            <div class="plan-feat">
+              <div class="feat-dot"></div>Dashboard analitik pasar
+            </div>
+          </div>
+          <button class="plan-btn btn btn-primary">Mulai berlangganan</button>
+        </div>
+        <div class="plan">
+          <div class="plan-tag custom">Custom</div>
+          <div class="plan-name">Untuk korporasi</div>
+          <div class="plan-price">Hubungi <small>kami</small></div>
+          <div class="plan-divider"></div>
+          <div class="plan-features">
+            <div class="plan-feat">
+              <div class="feat-dot"></div>Custom jaringan logistik
+            </div>
+            <div class="plan-feat">
+              <div class="feat-dot"></div>Integrasi API sistem
+            </div>
+            <div class="plan-feat">
+              <div class="feat-dot"></div>Manajer akun khusus
+            </div>
+            <div class="plan-feat">
+              <div class="feat-dot"></div>SLA enterprise
+            </div>
+          </div>
+          <button class="plan-btn btn btn-dark">Kontak sales</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="section">
+    <div class="cta-block">
+      <div class="section-label" style="margin-bottom: 12px;">Mulai hari ini</div>
+      <h2>Siap melangkah lebih jauh?</h2>
+      <p>Jadikan produk kamu kebanggaan Indonesia di mata dunia.<br />Kami di sini untuk mendukung setiap langkah.</p>
+      <div class="cta-btns">
+        <a href="#" class="btn btn-primary" style="padding: 13px 32px; font-size: 14px;">Gabung sekarang</a>
+        <a href="#" class="btn btn-ghost" style="padding: 13px 24px; font-size: 14px;">Hubungi tim kami →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-outer">
+    <div class="footer">
+      <div class="footer-top">
+        <div class="footer-col" style="max-width: 280px;">
+          <div class="nav-logo"
+            style="margin-bottom: 14px; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 7px;">
+            <div class="nav-logo-dot"></div>
+            GlobalTrade Pro
+          </div>
+          <p>Platform teknologi perdagangan internasional terkemuka di Indonesia. Menjembatani potensi lokal ke pasar
+            global.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Perusahaan</h4>
+          <ul>
+            <li><a href="#">Tentang kami</a></li>
+            <li><a href="#">Karir</a></li>
+            <li><a href="#">Berita</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Layanan</h4>
+          <ul>
+            <li><a href="#">Kirim barang</a></li>
+            <li><a href="#">Cek legalitas</a></li>
+            <li><a href="#">Analisis market</a></li>
+            <li><a href="#">Pendanaan</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kontak</h4>
+          <p>Gedung Global Trade, Lt. 12<br />Jl. Jend. Sudirman No. 45<br />Jakarta Selatan 12190</p>
+          <div style="margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--gold-mid);">
+            hello@globaltrade.pro</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 GlobalTrade Pro. Semua hak dilindungi.</p>
+        <div class="socials">
+          <span>Instagram</span>
+          <span>LinkedIn</span>
+          <span>Twitter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Generate dot map
+    const grid = document.getElementById('mapGrid');
+    const activeIndexes = [2, 5, 8, 11, 16, 19, 23, 28, 33, 37, 42, 47, 51, 56, 61, 65, 70, 74, 79, 83, 88, 92, 97, 101, 106, 110, 115, 119, 124, 128, 133, 137, 142, 146, 151, 155, 160, 164, 169, 173, 178, 182];
+    for (let i = 0; i < 196; i++) {
+      const d = document.createElement('div');
+      d.className = 'map-dot' + (activeIndexes.includes(i) ? ' on' : '');
+      grid.appendChild(d);
+    }
+  </script>
+</body>
+
+</html>
