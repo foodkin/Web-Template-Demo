@@ -207,7 +207,7 @@ function TemplateDetailClient({ template }: { template: (typeof allTemplates)[nu
                     <div className="absolute inset-0 flex flex-col p-5" style={{ background: t.headerBg }}>
                       <div className="flex gap-1.5 mb-4"><div className="w-2 h-2 rounded-full bg-red-300" /><div className="w-2 h-2 rounded-full bg-yellow-300" /><div className="w-2 h-2 rounded-full bg-green-300" /></div>
                       <div className="flex flex-col gap-2.5 flex-1 justify-center">
-                        {t.thumb.map((b: any, i: number) => <div key={i} style={{ width: b.w, height: b.h, background: b.bg, borderRadius: b.br }} />)}
+                        {t.thumb.map((b: { w: string; h: string; bg: string; br: string }, i: number) => <div key={i} style={{ width: b.w, height: b.h, background: b.bg, borderRadius: b.br }} />)}
                       </div>
                     </div>
                     <div className="absolute inset-0 flex flex-col justify-end" style={{ background: 'linear-gradient(to top,#2E1065DD 35%,transparent 100%)' }}>

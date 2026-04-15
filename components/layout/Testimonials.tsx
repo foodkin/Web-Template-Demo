@@ -27,7 +27,7 @@ export default function Testimonials() {
               className="p-10 rounded-[32px] border border-white/10"
               style={{ background: 'rgba(255,255,255,0.03)' }}
             >
-              <div className="text-3xl mb-6">"</div>
+              <div className="text-3xl mb-6">&quot;</div>
               <p className="text-sm italic leading-relaxed mb-8" style={{ color: '#ffffff90' }}>
                 {r.text}
               </p>
