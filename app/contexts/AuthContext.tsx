@@ -22,19 +22,17 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser]       = useState<User | null>(null);
-  const [orders, setOrders]   = useState<Order[]>([]);
+  const [user,    setUser]    = useState<User | null>(null);
+  const [orders,  setOrders]  = useState<Order[]>([]);
   const [pricing, setPricing] = useState<Pricing>(DEFAULT_PRICING);
-  const [ready, setReady]     = useState(false);
+  const [ready,   setReady]   = useState(false);
 
   useEffect(() => {
     try {
       const u = localStorage.getItem(STORAGE_KEY);
       if (u) setUser(JSON.parse(u));
-
       const o = localStorage.getItem(ORDERS_KEY);
       if (o) setOrders(JSON.parse(o));
-
       const p = localStorage.getItem(PRICING_KEY);
       if (p) setPricing({ ...DEFAULT_PRICING, ...JSON.parse(p) });
     } catch { /* ignore */ }

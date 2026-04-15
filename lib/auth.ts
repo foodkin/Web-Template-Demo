@@ -26,15 +26,39 @@ export const STORAGE_KEY = 'nusantara_user';
 export const ORDERS_KEY  = 'nusantara_orders';
 export const PRICING_KEY = 'nusantara_pricing';
 
+export type PackageType =
+  | 'template-only'
+  | 'template-hosting'
+  | 'ai-only'
+  | 'ai-hosting';
+
+export const PACKAGE_LABELS: Record<PackageType, string> = {
+  'template-only':    'Template',
+  'template-hosting': 'Template + Hosting',
+  'ai-only':          'Template AI',
+  'ai-hosting':       'Template AI + Hosting',
+};
+
 export interface Order {
   id: string;
   userId: number;
   userName: string;
   userEmail: string;
+
+  // product
   type: 'template' | 'ai-generated';
   templateId?: number;
   templateTitle?: string;
   aiHtmlCode?: string;
+
+  // checkout details
+  packageType: PackageType;
+  domainName: string;
+  phone: string;
+  contactEmail: string;
+  message: string;
+
+  // payment
   price: number;
   status: 'pending' | 'processing' | 'done';
   paidAt: string;
@@ -42,9 +66,15 @@ export interface Order {
 }
 
 export interface Pricing {
-  aiPackage: number;   // harga paket AI generate (ribuan IDR)
+  templateOnly: number;       // Template saja (ribuan IDR)
+  templateHosting: number;    // Template + Hosting
+  aiOnly: number;             // Template AI saja
+  aiHosting: number;          // Template AI + Hosting
 }
 
 export const DEFAULT_PRICING: Pricing = {
-  aiPackage: 49,       // Rp 49rb default
+  templateOnly:    49,
+  templateHosting: 97,
+  aiOnly:          29,
+  aiHosting:       69,
 };

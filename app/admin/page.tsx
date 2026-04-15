@@ -24,11 +24,13 @@ const topTemplates = [
   { name: "Kuliner & Restoran",      sold: 29, pct: 30 },
 ];
 
+/*
 const quickMenu = [
   { name: "Manajemen Pesanan",  href: "/admin/orders",    desc: "Lihat & proses semua pesanan masuk",    icon: "📋", bg: "#2E1065", fg: "#FACC15" },
   { name: "Manajemen Customer", href: "/admin/customers", desc: "Data customer, akun, dan riwayat beli", icon: "👥", bg: "#FACC15", fg: "#2E1065" },
   { name: "Pengaturan Sistem",  href: "/admin/settings",  desc: "Kelola harga paket & template",         icon: "⚙️", bg: "#2E1065", fg: "#FACC15" },
 ];
+*/
 
 const statusStyle: Record<string, React.CSSProperties> = {
   Selesai:     { background: '#FACC1520', color: '#92700A', border: '1px solid #FACC1540' },

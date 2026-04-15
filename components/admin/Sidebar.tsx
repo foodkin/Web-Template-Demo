@@ -90,12 +90,12 @@ export default function Sidebar() {
                   {item.icon}
                 </span>
                 <span className="flex-1">{item.name}</span>
-                {'badge' in item && item.badge > 0 && (
+                {(item.badge ?? 0) > 0 && (
                   <span className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black" style={{ background: isActive ? '#2E1065' : '#FACC15', color: isActive ? '#FACC15' : '#2E1065' }}>
                     {item.badge}
                   </span>
                 )}
-                {isActive && !('badge' in item && item.badge > 0) && (
+                {isActive && (item.badge ?? 0) <= 0 && (
                   <span className="ml-auto w-1.5 h-1.5 rounded-full" style={{ background: '#2E1065' }} />
                 )}
               </Link>
