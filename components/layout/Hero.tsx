@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Hero() {
   return (
     <section
@@ -111,9 +113,10 @@ export default function Hero() {
             harga terjangkau, siap online dalam 24 jam.
           </p>
 
-          {/* CTAs */}
+            {/* CTAs */}
           <div className="flex flex-wrap gap-3">
-            <button
+            <Link
+              href="/templates"
               className="group relative font-bold text-sm px-7 py-3.5 rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.02]"
               style={{
                 background: "#FACC15",
@@ -137,18 +140,7 @@ export default function Hero() {
                   />
                 </svg>
               </span>
-            </button>
-
-            <button
-              className="font-semibold text-sm px-7 py-3.5 rounded-full border-2 transition-all duration-300 hover:bg-[#2E1065] hover:text-white"
-              style={{
-                borderColor: "#2E1065",
-                color: "#2E1065",
-                background: "transparent",
-              }}
-            >
-              💬 Hubungi Kami
-            </button>
+            </Link>
           </div>
 
           {/* Trust row */}
